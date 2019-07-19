@@ -149,6 +149,7 @@ def stratify():
     print("PRE ITERATIVE")
     X_train, y_train, X_test, y_test = iterative_train_test_split(totalX, totalY, 0.2)
 
+
     print("COMBINATION")
     df = pd.DataFrame({
         'train': Counter(
@@ -196,11 +197,65 @@ def binarize():
         print(df[label].head(100))
     df.to_csv(PATH_RADIO6)
 
+
+def stratify_val():
+    df = pd.read_csv("train2.csv", usecols=['TEXT', 'No Finding', 'Enlarged Cardiomediastinum',
+                                           'Cardiomegaly', 'Airspace Opacity', 'Lung Lesion',
+                                           'Edema', 'Consolidation', 'Pneumonia', 'Atelectasis',
+                                           'Pneumothorax', 'Pleural Effusion', 'Pleural Other',
+                                           'Fracture', 'Support Devices'])
+    totalX = df["TEXT"].values
+    totalY = df[['No Finding', 'Enlarged Cardiomediastinum', 'Cardiomegaly', 'Airspace Opacity',
+                 'Lung Lesion', 'Edema', 'Consolidation', 'Pneumonia', 'Atelectasis', 'Pneumothorax',
+                 'Pleural Effusion', 'Pleural Other', 'Fracture', 'Support Devices']].values
+
+    totalX = np.expand_dims(totalX, axis=1)
+
+    print("PRE ITERATIVE")
+    X_train, y_train, X_test, y_test = iterative_train_test_split(totalX, totalY, 0.2)
+
+    print("COMBINATION")
+    df = pd.DataFrame({
+        'train': Counter(
+            str(combination) for row in get_combination_wise_output_matrix(y_train, order=2)
+            for
+            combination in row),
+        'test': Counter(
+            str(combination) for row in get_combination_wise_output_matrix(y_test, order=2) for
+            combination in row)
+    }).T.fillna(0.0)
+    print(df.to_string())
+
+    print("WRITING Train")
+
+    dfTotal2 = pd.DataFrame(
+        columns=["TEXT", 'No Finding', 'Enlarged Cardiomediastinum', 'Cardiomegaly', 'Airspace Opacity',
+                 'Lung Lesion', 'Edema', 'Consolidation', 'Pneumonia', 'Atelectasis', 'Pneumothorax',
+                 'Pleural Effusion', 'Pleural Other', 'Fracture', 'Support Devices'])
+    dfTotal2['TEXT'] = X_train.flatten()
+    dfTotal2[['No Finding', 'Enlarged Cardiomediastinum', 'Cardiomegaly', 'Airspace Opacity',
+              'Lung Lesion', 'Edema', 'Consolidation', 'Pneumonia', 'Atelectasis', 'Pneumothorax',
+              'Pleural Effusion', 'Pleural Other', 'Fracture', 'Support Devices']] = y_train
+    dfTotal2.to_csv("train.csv")
+
+    print("WRITING Test")
+
+    dfTotal2 = pd.DataFrame(
+        columns=["TEXT", 'No Finding', 'Enlarged Cardiomediastinum', 'Cardiomegaly', 'Airspace Opacity',
+                 'Lung Lesion', 'Edema', 'Consolidation', 'Pneumonia', 'Atelectasis', 'Pneumothorax',
+                 'Pleural Effusion', 'Pleural Other', 'Fracture', 'Support Devices'])
+    dfTotal2['TEXT'] = X_test.flatten()
+    dfTotal2[['No Finding', 'Enlarged Cardiomediastinum', 'Cardiomegaly', 'Airspace Opacity',
+              'Lung Lesion', 'Edema', 'Consolidation', 'Pneumonia', 'Atelectasis', 'Pneumothorax',
+              'Pleural Effusion', 'Pleural Other', 'Fracture', 'Support Devices']] = y_test
+    dfTotal2.to_csv("val.csv")
+
 if __name__ == '__main__':
-    step1()
-    step2()
-    step3()
-    group()
-    reorder()
-    binarize()
-    stratify()
+    stratify_val()
+    #step1()
+    #step2()
+    #step3()
+    #group()
+    #reorder()
+    #binarize()
+    #stratify()
