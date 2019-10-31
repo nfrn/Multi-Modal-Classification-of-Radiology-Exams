@@ -8,14 +8,15 @@ recurrent units, and neural attention, together with state-of-the-art CNN networ
 The complete multi-modal model with pre-trained weights (i.e. image processing path pre-trained with CheXpert and MIMIC-CXR, and text modeling path pre-trained with MIMIC-III dataset) and fine-tuned with the open-i training split, achieved a very high performance in terms of the different metrics. Pre-training, in particular, contributed significantly to the overall performance of the complete model.
 
 For further information about the method, the reader can refer to the following publication reporting early results:
-```   @inproceedings{nunes2019multi,
-      title={A Multi-modal Deep Learning Method for Classifying Chest Radiology Exams},
-      author={Nunes, Nelson and Martins, Bruno and da Silva, Nuno Andr{\'e} and Leite, Francisca and Silva, M{\'a}rio J},
-      booktitle={EPIA Conference on Artificial Intelligence},
-      pages={323--335},
-      year={2019},
-      organization={Springer}
-    }
+```   
+      @inproceedings{nunes2019multi,
+            title={A Multi-modal Deep Learning Method for Classifying Chest Radiology Exams},
+            author={Nunes, Nelson and Martins, Bruno and da Silva, Nuno Andr{\'e} and Leite, Francisca and Silva, M{\'a}rio J},
+            booktitle={EPIA Conference on Artificial Intelligence},
+            pages={323--335},
+            year={2019},
+            organization={Springer}
+      }
 ```
 
 # Instructions:
