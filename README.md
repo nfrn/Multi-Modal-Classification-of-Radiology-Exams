@@ -20,13 +20,13 @@ For further information about the method, the reader can refer to the following 
 ```
 
 # Instructions:
-  *The Dataset folder provides the scripts necessary to preprocess the MIMIC-CXR, MIMIC-III, and Open-i datasets described in our experiments.
+  * The Dataset folder provides the scripts necessary to preprocess the MIMIC-CXR, MIMIC-III, and Open-i datasets described in our experiments.
   
-  *The Text_Model, Image_Model folders provide scripts to create the models, train, and generate predictions leveraging the correspondent datasets.
+  * The Text_Model, Image_Model folders provide scripts to create the models, train, and generate predictions leveraging the correspondent datasets.
   
-  *The Merged_Model folder provide scripts to create the complete model with and without pre-trained weights, train, generate predictions, and provide the visualization mechanisms(Grad-CAM and Word Weights) leveraging the Open-i dataset.
+  * The Merged_Model folder provide scripts to create the complete model with and without pre-trained weights, train, generate predictions, and provide the visualization mechanisms(Grad-CAM and Word Weights) leveraging the Open-i dataset.
   
-  *The Evaluation folder uses the predicted numpy array files generated from the previous folders and computes the multi-label evaluation metrics.
+  * The Evaluation folder uses the predicted numpy array files generated from the previous folders and computes the multi-label evaluation metrics.
   
 
 
